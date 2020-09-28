@@ -1,0 +1,143 @@
+元資料
+https://drive.google.com/file/d/1GzDwRmOyuAE1mL7iD4v4iiyXIN1EI6og/view
+
+デモアカウント
+https://lin.ee/FWiJSZQ
+
+
+LINE Developers
+https://developers.line.biz/ja/
+
+
+（参考）
+リッチメニューを使う
+https://developers.line.biz/ja/docs/messaging-api/using-rich-menus/
+リッチメニュー事例
+https://line-sm.com/blog/richmenu_catalog/
+Messaging API Webhooks
+https://developers.line.biz/ja/reference/messaging-api/#webhooks
+Flex Message
+https://developers.line.biz/ja/docs/messaging-api/using-flex-messages/
+LINE Messaging API SDKs
+https://developers.line.biz/ja/docs/messaging-api/line-bot-sdk/
+
+
+
+
+
+=== コピー情報 ========================================
+チャネルシークレット：
+チャネルアクセストークン：
+
+richMenuId：
+
+LIFF URL：
+
+herokuアプリのURL：
+
+=======================================================
+
+
+
+1) LINE BotとLIFFの設定
+
+
+Gitpod
+https://gitpod.io/#https://github.com/MasatakaMiki/takeout
+(https://github.com/MasatakaMiki/takeout)
+
+
+
+・チャネルアクセストークンを変数に設定する
+LINE_TOKEN=${your_token}
+例）LINE_TOKEN=Zo6m270/NfAt+RNrEVU0uvL7eOGUhkzjZEEfiJ33kgm8vndvDtMQ2A1M2EtfN8IG5VxWFjQ2fOHCncnhomwPEdPdLtemxF0ijjw+cqp44aXC/zctp11UuTFDWdFahEp4MdKSIuxiHQuTuV//T45J4QdB04t89/1O/w1cDnyilFU=
+
+
+・リッチメニューの画像のダウンロード
+curl -OL https://raw.githubusercontent.com/sumihiro3/line-kintone-azure-takeout/master/richmenu_default_ja.png
+
+
+・リッチメニューの作成
+curl -v -X POST https://api.line.me/v2/bot/richmenu -H 'Authorization: Bearer '"$LINE_TOKEN"'' -H 'Content-Type: application/json' -d '{"size": {"width": 2500,"height": 843},"selected": true,"name": "richmenu-default","chatBarText": "メニュー","areas": [{"bounds": {"x": 0,"y": 0,"width": 1250,"height": 843},"action": {"type": "postback","data": "type=menu","displayText": "注文する"}},{"bounds": {"x": 1250,"y": 0,"width": 625,"height": 422},"action": {"type": "postback","data": "type=business-hour","displayText": "営業時間"}},{"bounds": {"x": 1875,"y": 0,"width": 625,"height": 422},"action": {"type": "postback","data": "type=access","displayText": "アクセス"}},{"bounds": {"x": 1250,"y": 422,"width": 1250,"height": 421},"action": {"type": "postback","data": "type=customer-support","displayText": "問い合わせ"}}]}'
+
+
+・リッチメニューを変数に設定する
+richMenuId=${your_richMenuId}
+例）richMenuId=richmenu-b9254651b908854adc170ae328ac0ef5
+
+
+・リッチメニューに画像をアップロードして添付する
+curl -v -X POST https://api.line.me/v2/bot/richmenu/"$richMenuId"/content -H 'Authorization: Bearer '"$LINE_TOKEN"'' -H 'Content-Type: image/png' -T ./richmenu_default_ja.png
+
+
+
+
+2) アプリのデプロイ
+
+
+・herokuにログインする
+heroku login --interactive
+
+
+・herokuアプリを作成する
+heroku create ldc-20200929-${your_name}
+例）heroku create ldc-20200929-brown
+
+
+・herokuアプリとリポジトリを紐づける
+heroku git:remote -a ldc-20200929-${your_name}
+例）heroku git:remote -a ldc-20200929-brown
+
+
+・gitの初期設定
+git config --global user.email ${your_mail}
+例）git config --global user.email handson@linedc.jp
+
+git config --global user.name ${your_name}
+例）git config --global user.name brown
+
+
+・herokuアプリをビルドする際に package.json にある devDependencies のモジュールもインストールするように設定
+heroku config:set NPM_CONFIG_PRODUCTION=false
+
+
+・アプリにホスト 0.0.0.0 を listen させ、プロダクションモードで起動する設定(Nuxt.js)
+heroku config:set HOST=0.0.0.0
+
+heroku config:set NODE_ENV=production
+
+
+・設定ファイルを作成（コピー）
+cp ./.env.example ./.env
+
+
+・アプリ環境変数をheroku へ設定する
+sh ./set-configs-to-heroku.sh
+
+
+・アプリ環境変数の確認
+heroku config
+
+
+・デプロイ
+git push heroku master
+
+
+・ログの表示
+heroku logs --tail
+※ログの表示を終了する場合は、Control(Ctrl)+C
+
+
+
+
+○当日情報
+LINE Pay Channel ID：
+LINE Pay Channel Secret：
+
+kintoneドメイン：
+kintone ユーザーID：
+kintone パスワード：
+顧客管理アプリID：
+注文管理アプリID：
+決済管理アプリID：
+問い合わせ管理アプリID：
