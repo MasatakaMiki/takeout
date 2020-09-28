@@ -50,7 +50,7 @@ https://gitpod.io/#https://github.com/MasatakaMiki/takeout
 
 ・チャネルアクセストークンを変数に設定する
 LINE_TOKEN=${your_token}
-例）LINE_TOKEN=Zo6m270/NfAt+RNrEVU0uvL7eOGUhkzjZEEfiJ33kgm8vndvDtMQ2A1M2EtfN8IG5VxWFjQ2fOHCncnhomwPEdPdLtemxF0ijjw+cqp44aXC/zctp11UuTFDWdFahEp4MdKSIuxiHQuTuV//T45J4QdB04t89/1O/w1cDnyilFU=
+例）LINE_TOKEN=Xx9x999/XxXx+XXxXXX9xxX9xXXXxxxxXXXxxX99xxx9xxxxXxXX9X9X9XxxX9XX9XxXXxX9xXXXxxxxxxxXXxXxXxxxxX9xxxx+xxx99xXX/xxxx99XxXXXXxXxxXx9XxXXXxxxXXxXxX//X99X9XxX99x99/99/x9xXxxxxXX=
 
 
 ・リッチメニューの画像のダウンロード
@@ -63,7 +63,7 @@ curl -v -X POST https://api.line.me/v2/bot/richmenu -H 'Authorization: Bearer '"
 
 ・リッチメニューを変数に設定する
 richMenuId=${your_richMenuId}
-例）richMenuId=richmenu-b9254651b908854adc170ae328ac0ef5
+例）richMenuId=richmenu-x9999999x999999xxx999xx999xx9xx9
 
 
 ・リッチメニューに画像をアップロードして添付する
